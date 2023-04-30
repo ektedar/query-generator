@@ -5,7 +5,7 @@ const InputPanel = ({input, handleInputChange, generateMongoQuery}) => {
         <div className="left-panel">
             <h2>Input</h2>
             <textarea value={input} onChange={handleInputChange} rows="20" cols="50"></textarea>
-            <button onClick={generateMongoQuery}>Geneerate Mongo Query</button>
+            <button onClick={generateMongoQuery}>Generate Mongo Query</button>
         </div>
     );
 };

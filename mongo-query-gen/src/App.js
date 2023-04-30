@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import './App.css';
 import InputPanel from './components/InputPanel';
 import OutputPanel from './components/OutputPanel';
-import './App.css';
 
 function App() {
   const [input, setInput] = useState('');
@@ -14,7 +14,7 @@ function App() {
 
   // TODO: Update this with the API call but for now we can keep it a static output
   const generateMongoQuery = async () => {
-    const apiResponse = 'Generated Mongo Query: ' + input;
+    const apiResponse = ' ' + input;
     setOutput(apiResponse)
   };
 
