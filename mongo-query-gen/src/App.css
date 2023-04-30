@@ -93,6 +93,7 @@ button:hover {
   align-items: center;
   justify-content: flex-start;
   padding-left: 8px;
+  padding-bottom: 8px;
 }
 
 .title-bar span {
@@ -119,7 +120,7 @@ button:hover {
   background-color: rgba(0, 0, 0, 0.3);
   color: #61dafb;
   padding: 10px 20px 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   white-space: pre-wrap;
   overflow-x: auto;
   font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
