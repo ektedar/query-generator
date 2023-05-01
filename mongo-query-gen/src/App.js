@@ -6,14 +6,18 @@ import OutputPanel from './components/OutputPanel';
 function App() {
   const [input, setInput] = useState('');
   const [output, setOutput] = useState('');
+  const [queryType, setQueryType] = useState('mongo');
 
-  // Lol what is this doing
   const handleInputChange = (event) => {
     setInput(event.target.value);
   }
 
+  const handleQueryTypeChange = (event) => {
+    setQueryType(event.target.value);
+  }
+
   // TODO: Update this with the API call but for now we can keep it a static output
-  const generateMongoQuery = async () => {
+  const generateQuery = async () => {
     const apiResponse = ' ' + input;
     setOutput(apiResponse)
   };
@@ -24,7 +28,9 @@ function App() {
         <InputPanel
           input={input}
           handleInputChange={handleInputChange}
-          generateMongoQuery={generateMongoQuery}
+          generateQuery={generateQuery}
+          handleQueryType={handleQueryTypeChange}
+          queryType={queryType}
         />
         <OutputPanel
           output={output}

@@ -16,7 +16,8 @@ body {
 .container {
   display: flex;
   justify-content: space-evenly;
-  align-items: stretch; /* Updated to stretch the panels */
+  align-items: stretch;
+  /* Updated to stretch the panels */
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -70,7 +71,6 @@ textarea:focus {
 
 button {
   display: block;
-  margin-top: 10px;
   background-color: #61dafb;
   color: #282c34;
   border: none;
@@ -117,7 +117,7 @@ button:hover {
 }
 
 .right-panel pre {
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: #0000004d;
   color: #61dafb;
   padding: 10px 20px 20px;
   border-radius: 10px;
@@ -128,4 +128,27 @@ button:hover {
   line-height: 1.5;
   max-height: 450px;
   position: relative;
+}
+
+.action-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+select {
+  background-color: #61dafb;
+  color: #282c34;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  height: 36px;
+  line-height: 36px;
+}
+
+select:hover {
+  background-color: #4ec0e8;
 }
