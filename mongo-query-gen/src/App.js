@@ -8,6 +8,7 @@ function App() {
   const [output, setOutput] = useState('');
   const [queryType, setQueryType] = useState('mongo');
 
+
   const handleInputChange = (event) => {
     setInput(event.target.value);
   }
@@ -18,9 +19,27 @@ function App() {
 
   // TODO: Update this with the API call but for now we can keep it a static output
   const generateQuery = async () => {
-    const apiResponse = ' ' + input;
-    setOutput(apiResponse)
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          message: "create a table" // Hardcoded for testing
+        })
+      }
+
+      // Sending a POST request
+      const response = fetch("http://localhost:3001/mongoQuery", options)
+      const data = (await response).json()
+      console.log(data)
+      
+    } catch (error) {
+      console.error('Error generating response:', error);
+    }
   };
+
 
   return (
     <div className="App">
