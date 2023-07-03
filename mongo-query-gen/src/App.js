@@ -33,7 +33,7 @@ function App() {
 
       // Sending a POST request
       const response = await fetch("http://localhost:3001/generateQuery", options)
-      
+
       // Check if we get a proper response 
       if (!response.ok) {
         throw new Error("Server failed to repsond")
@@ -41,7 +41,7 @@ function App() {
 
       // Pull the data from the response
       const data = await response.text();
-      
+
       // Send the API output to the output panel 
       setOutput(data)
 
