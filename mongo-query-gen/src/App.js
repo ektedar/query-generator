@@ -26,14 +26,23 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          message: "create a table" // Hardcoded for testing
+          usrPrompt: "create a table named test_table",
+          db: "sql"
         })
       }
 
       // Sending a POST request
-      const response = fetch("http://localhost:3001/mongoQuery", options)
-      const data = (await response).json()
+      const response = await fetch("http://localhost:3001/generateQuery", options)
+      
+      // Check if we get a proper response 
+      if (!response.ok) {
+        throw new Error("Server failed to repsond")
+      }
+
+      // Pull the data from the response
+      const data = await response.text();
       console.log(data)
+
 
     } catch (error) {
       console.error('Error generating response:', error);
@@ -53,6 +62,7 @@ function App() {
         />
         <OutputPanel
           output={output}
+          queryType={queryType}
         />
       </div>
     </div>

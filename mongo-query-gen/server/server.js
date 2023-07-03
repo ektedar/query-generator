@@ -1,6 +1,6 @@
 const express = require('express');
 const { Configuration, OpenAIApi } = require("openai");
-const { ChatPromptTemplate, HumanMessagePromptTemplate, PromptTemplate, SystemMessagePromptTempplate} = require('langchain/prompts')
+const { ChatPromptTemplate, HumanMessagePromptTemplate, PromptTemplate, SystemMessagePromptTempplate } = require('langchain/prompts')
 const cors = require('cors');
 require('dotenv').config();
 
@@ -15,25 +15,30 @@ const configuration = new Configuration({
 })
 const openai = new OpenAIApi(configuration);
 
-app.post('/generate_query', async(req, res) => {
+app.post('/generateQuery', async (req, res) => {
     // Get the user requests from the post call
     promptRequest = req.body.usrPrompt
     dbType = req.body.db
 
-    const template = "Write me a {db} query with the following objective: {promptReq}.";
-	const prompt = new PromptTemplate({
-		template, 
-		inputVariables: ["db", "promptReq"]
-	});
-
-    const response = await prompt.formatPromptValue({
-        db: dbType,
-        promptReq: promptRequest 
+    const template = "Write me a {db} query with the following objective: {promptReq}. Code only.";
+    const prompt = new PromptTemplate({
+        template,
+        inputVariables: ["db", "promptReq"]
     });
+
+    try {
+        const response = await prompt.formatPromptValue({
+            db: dbType,
+            promptReq: promptRequest
+        });
+    } catch (error) {
+        console.error("LangChain server failed to respond:", error)
+    }
+
     const responseStr = response.toString();
 
-    res.send(responseStr)
     console.log(responseStr)
+    res.send(responseStr)
 
 })
 
@@ -58,4 +63,11 @@ app.post('/mongoQuery', async (req, res) => {
 
 app.listen(3001, () => {
     console.log('Server is running on port 3001');
+});
+
+// To hanlde Ctrl+C Command to exit the server
+process.on('SIGINT', function () {
+    console.log("\nGracefully shutting down from SIGINT (Ctrl-C)");
+    // some other closing procedures go here
+    process.exit(0);
 });
