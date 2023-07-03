@@ -41,7 +41,9 @@ function App() {
 
       // Pull the data from the response
       const data = await response.text();
-      console.log(data)
+      
+      // Send the API output to the output panel 
+      setOutput(data)
 
 
     } catch (error) {

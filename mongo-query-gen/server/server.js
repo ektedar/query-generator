@@ -27,19 +27,29 @@ app.post('/generateQuery', async (req, res) => {
     });
 
     try {
+
+        // Used LangChain to make a structured response no matter the user input
         const response = await prompt.formatPromptValue({
             db: dbType,
             promptReq: promptRequest
         });
+        const responseStr = response.toString();
+        
+        // Call out to the OpenAI API service for Chat Completion
+        const completion = await openai.createChatCompletion({
+            model: "gpt-3.5-turbo",
+            messages: [{
+                "role": "system",
+                "content": responseStr
+            }]
+        });
+
+        // Send the response back as the output
+        res.send(completion.data.choices[0].message.content)
+    
     } catch (error) {
-        console.error("LangChain server failed to respond:", error)
+        console.error("OpenAI API failed to generate a reponse", error)
     }
-
-    const responseStr = response.toString();
-
-    console.log(responseStr)
-    res.send(responseStr)
-
 })
 
 
