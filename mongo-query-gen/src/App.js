@@ -26,8 +26,8 @@ function App() {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          usrPrompt: "create a table named test_table",
-          db: "sql"
+          usrPrompt: input,
+          db: queryType
         })
       }
 
