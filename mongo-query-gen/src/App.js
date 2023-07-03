@@ -34,7 +34,7 @@ function App() {
       const response = fetch("http://localhost:3001/mongoQuery", options)
       const data = (await response).json()
       console.log(data)
-      
+
     } catch (error) {
       console.error('Error generating response:', error);
     }
